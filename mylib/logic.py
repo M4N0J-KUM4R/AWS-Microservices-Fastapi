@@ -3,20 +3,21 @@ from textblob import TextBlob
 
 
 def wiki(name="War Goddess", length=1):
-    """This is a Wikipedia fetcher"""
+    """This is a wikipedia fetcher"""
 
-    my_wiki = wikipedia.summary(name, sentences=length)
+    my_wiki = wikipedia.summary(name, length)
     return my_wiki
 
 
 def search_wiki(name):
     """Search Wikipedia for Names"""
+
     results = wikipedia.search(name)
     return results
 
 
 def phrase(name):
-    """Returns a phrase from a Wikipedia"""
+    """Returns phrases from wikipedia"""
 
     page = wiki(name)
     blob = TextBlob(page)
