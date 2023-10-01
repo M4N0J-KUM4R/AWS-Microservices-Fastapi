@@ -9,12 +9,12 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {"message": "Wikipedia API. call /search or /wiki"}
+    return {"message": "Wikipedia API.  Call /search or /wiki"}
 
 
 @app.get("/search/{value}")
 async def search(value: str):
-    """PAGE TO SEARCH IN WIKIPEDIA"""
+    """Page to search in wikipedia"""
 
     result = search_wiki(value)
     return {"result": result}
@@ -22,7 +22,7 @@ async def search(value: str):
 
 @app.get("/wiki/{name}")
 async def wiki(name: str):
-    """Retrieve Wikipedia page"""
+    """Retrieve wikipedia page"""
 
     result = wikilogic(name)
     return {"result": result}
@@ -30,7 +30,7 @@ async def wiki(name: str):
 
 @app.get("/phrase/{name}")
 async def phrase(name: str):
-    """Retrieve Wikipedia page and return phrase"""
+    """Retrieve wikipedia page and return phrases"""
 
     result = wikiphrases(name)
     return {"result": result}

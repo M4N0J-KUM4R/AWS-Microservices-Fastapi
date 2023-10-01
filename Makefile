@@ -1,7 +1,11 @@
 install:
 	#install commands
-	pip install --upgrade pip && \
+	pip install --upgrade pip &&\
 		pip install -r requirements.txt
+
+post-install:
+	python -m textblob.download_corpora
+
 format:
 	#format code
 	black *.py mylib/*.py
@@ -16,4 +20,12 @@ build:
 	docker build -t deploy-fastapi .
 run:
 	#run docker
-	docker run -d -p 8080:8080 deploy-fastapi
+	#docker run -p 127.0.0.1:8080:8080 87e904c57bb1
+deploy:
+	#deploy
+	aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 496637173573.dkr.ecr.ap-south-1.amazonaws.com
+	docker build -t fastapi-wiki .
+	docker tag fastapi-wiki:latest 496637173573.dkr.ecr.ap-south-1.amazonaws.com/fastapi-wiki:latest
+	docker push 496637173573.dkr.ecr.ap-south-1.amazonaws.com/fastapi-wiki:latest
+
+all: install post-install lint test deploy
