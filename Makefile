@@ -5,6 +5,7 @@ install:
 
 post-install:
 	python -m textblob.download_corpora
+	pip install httpx
 
 format:
 	#format code
