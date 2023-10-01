@@ -2,13 +2,13 @@ install:
 	#install commands
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
-
 format:
-    #format code
+	#format code
+	black *.py mylib/*.py
 lint:
-    #flake8 or #pylint
+	#flake8 or #pylint
 test:
-    #test
+	#test
 deploy:
-    #deploy
+	#deploy
 all: install lint test deploy
